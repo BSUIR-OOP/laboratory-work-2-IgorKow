@@ -14,9 +14,6 @@ namespace Lab_1_1
         Graphics graphic;
         Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 3);
 
-       // Graphics g = Form1.ActiveForm.CreateGraphics();
-
-
         List<int> Points = new List<int>();
         public Rendering(List<int> ListPonts,Graphics graphics) 
         {
@@ -30,7 +27,6 @@ namespace Lab_1_1
 
         public void PrintFigure(IDisplay display)
         {
-            //Graphics g = Form1.ActiveForm.CreateGraphics();
             display.Make(Points, pen, graphic);
         }
     }

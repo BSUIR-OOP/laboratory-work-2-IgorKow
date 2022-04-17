@@ -26,7 +26,6 @@ namespace Lab_1_1
 
         public override void PrintFigure()
         {
-            //graphic.DrawEllipse(pen, point[0], point[1], point[2]-point[0], point[2]-point[0]);
             Rendering rendering = new Rendering(point, graphic);
             rendering.PrintFigure(new DrawCircle());
         }
