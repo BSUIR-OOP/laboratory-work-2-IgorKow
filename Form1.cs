@@ -15,22 +15,21 @@ namespace Lab_1_1
     public partial class Form1 : Form
     {
         Graphics graphic;
-        Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 3);
-        List<Figure> list = new List<Figure>();
         List<int> points = new List<int>();
+
         public Form1()
         {
             InitializeComponent();
             graphic = CreateGraphics();
         }
 
-        private int[] GetPoint(int lengthArray, List<int> list)
+        private List<int> GetPoint(List<int> list)
         {
-            int[] pointXY = new int[lengthArray];
+            List<int> pointXY = new List<int>() ;
 
-            for (int i = 0; i < lengthArray; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                pointXY[i] = list[i];
+                pointXY.Add(list[i]);
                 list[i] = 0;  
             }
 
@@ -46,52 +45,30 @@ namespace Lab_1_1
             }
         }
 
-
-        private void button5_Click(object sender, EventArgs e)
+        private void SelectionAndRendering(int index, List<int> Points)
         {
-            Triangle triangle = new Triangle(GetPoint(6,points));
-            triangle.PrintFigure(pen, graphic);
-            ClearList(points);
+            CollectionOfFigures collection = new CollectionOfFigures(Points, graphic);
+
+            foreach(Figure element in collection.figures)
+            {
+                if ((collection.figures.IndexOf(element)) == index)
+                {
+                    collection.figures[index].PrintFigure();
+                }
+            }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Segment segment = new Segment(GetPoint(4, points));
-            segment.PrintFigure(pen, graphic);
-            ClearList(points);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Circle circle = new Circle(GetPoint(4, points));
-            circle.PrintFigure(pen, graphic);
-            ClearList(points);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Rectangle rectangle = new Rectangle(GetPoint(4, points));
-            rectangle.PrintFigure(pen, graphic);
-            ClearList(points);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Trapezium trapezium = new Trapezium(GetPoint(8, points));
-            trapezium.PrintFigure(pen, graphic);
-            ClearList(points);
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            Hexagon hexagon = new Hexagon(GetPoint(12, points));
-            hexagon.PrintFigure(pen, graphic);
-            ClearList(points);
-        }
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             points.Add(e.X);
             points.Add(e.Y);
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            SelectionAndRendering(comboBox1.SelectedIndex, GetPoint(points));
+            ClearList(points);
+        }
+
     }
 }

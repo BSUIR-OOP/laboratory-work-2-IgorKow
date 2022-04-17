@@ -9,9 +9,8 @@ namespace Lab_1_1
 {
    abstract public class Figure
    {
-        public int[] ArrayPoints;
         private protected List<int> point = new();
-        abstract public void PrintFigure(Pen pen, Graphics graphic);
+        abstract public void PrintFigure();
    }
 
 }
